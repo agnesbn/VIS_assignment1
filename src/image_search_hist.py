@@ -9,7 +9,6 @@ import glob
 from operator import itemgetter
 import re
 import pandas as pd
-sys.path.append(os.path.join("..", "..", "..", "CDS-VIS"))
  # data analysis
 import numpy as np
  # image processing
@@ -20,7 +19,7 @@ import matplotlib.pyplot as plt
 def hist_comp():
     # Take a user-defined image from the folder
     # get directory path
-    directory_path = os.path.join("..", "..", "..", "CDS-VIS", "flowers")
+    directory_path = os.path.join("in", "flowers")
     
     # filenames
     filenames = os.listdir(directory_path)
