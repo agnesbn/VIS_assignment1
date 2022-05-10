@@ -9,13 +9,13 @@ The initial assignment was made partly in collaboration with others from the cou
 ## 2. Assignment description
 This assignment was assigned by Ross, and the assignment description was as follows:
 
-_For this assignment, you will write a small Python program to compare image histograms quantitively using Open-CV and the other image processing tools you've already encountered. Your script should do the following:_
+For this assignment, you will write a small Python program to compare image histograms quantitively using Open-CV and the other image processing tools you've already encountered. Your script should do the following:
 
-- _Take a user-defined image from the folder_
-- _Calculate the "distance" between the colour histogram of that image and all of the others._
-- _Find which 3 image are most "similar" to the target image._
-- _Save an image which shows the target image, the three most similar, and the calculated distance score._
-- _Save a CSV which has one column for the filename and three columns showing the filenames of the closest images in descending order._
+- Take a user-defined image from the folder
+- Calculate the "distance" between the colour histogram of that image and all of the others.
+- Find which 3 image are most "similar" to the target image.
+- Save an image which shows the target image, the three most similar, and the calculated distance score.
+- Save a CSV which has one column for the filename and three columns showing the filenames of the closest images in descending order.
 
 ## 3. Methods
 Initially, when the assignment was handed in as part of the course, I used calculations of distances between colour histograms to calculate similary between images. However, as we have later been introduced to more advanced methods of calculating similarity, I have provided both my original code (with some corrections) and a script using a pretrained model to do nearest neighbours learning on the data. I would recommend using the second code.
