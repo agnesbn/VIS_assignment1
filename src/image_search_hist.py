@@ -2,7 +2,7 @@
 Image seach using colour histogram comparisons
 """
 
-""" Import the relevant packages """
+# Import the relevant packages
  # base tools
 import os, sys
 import glob
