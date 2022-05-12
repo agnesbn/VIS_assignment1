@@ -154,7 +154,7 @@ def hist_comp():
     output_transp = output_df.transpose()
     
     # save the CSV
-    output_transp.to_csv("out/hist_similar_images.csv", encoding = "utf-8")
+    output_transp.to_csv(os.path.join("out", "hist_similar_images.csv"), encoding = "utf-8")
 
 def main():
     hist_comp()
