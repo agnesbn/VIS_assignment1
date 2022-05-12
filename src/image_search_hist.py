@@ -2,49 +2,64 @@
 Image seach using colour histogram comparisons
 """
 
-# Import the relevant packages
+""" Import the relevant packages """
  # base tools
 import os, sys
 import glob
 from operator import itemgetter
 import re
-import pandas as pd
+ # argument parser
+import argparse
  # data analysis
 import numpy as np
+import pandas as pd
  # image processing
 import cv2
  # plotting
 import matplotlib.pyplot as plt
 
-def hist_comp():
-    # Take a user-defined image from the folder
+""" Argument parser """
+# Argument parser
+def parse_args():
+    ap = argparse.ArgumentParser()
+    # target image index (between 0 and 1359)
+    ap.add_argument("-i", 
+                    "--image_index", 
+                    required = True, 
+                    help = "The index of your target image, choose number between 0 and 1359")
+    args = vars(ap.parse_args())
+    return args 
+
+""" Histogram comparison function """
+def hist_comp(index):
     # get directory path
-    directory_path = os.path.join("in", "flowers")
-    
+    directory_path = os.path.join("..", "..", "..", "CDS-VIS", "flowers")
     # filenames
     filenames = os.listdir(directory_path)
-    
     # joined paths to images in the directory
     joined_paths = []
     # image names in the directory
     image_names = []
-    
+    # for files in list of filenames
     for file in filenames:
-        # if that file is not a jpg, do nothing
+        # if a file does not end with .jpg, do nothing
         if not file.endswith(".jpg"):
             pass
+        # otherwise
         else:
+            # append path for each file to one list
             input_path = os.path.join(directory_path, file)
             joined_paths.append(input_path)
+            # and append filename to another list
             image_names.append(file)
     
     # sort filenames and filepaths
     joined_names = sorted(image_names)
     joined_paths = sorted(joined_paths)
     
-    # user-defined image – I chose the image at index 231, i.e. image_0232.jpg
-    image_path = joined_paths[231]
-    image_name = joined_names[231]
+    # user-defined image
+    image_path = joined_paths[index]
+    image_name = joined_names[index]
     
     # read the image
     image = cv2.imread(image_path)
@@ -130,23 +145,23 @@ def hist_comp():
     # target image in row 1, colum 1
     ax[0,0].imshow(picturelist[0])
     # add title with name and distance score
-    ax[0,0].title.set_text(f"Target image, {top_names[0]}")
+    ax[0,0].title.set_text(f"{top_names[0]}\nTarget image")
     # most similar image in row 1, column 2
     ax[0,1].imshow(picturelist[1])
     # add title with name and distance score
-    ax[0,1].title.set_text(f"Dist. for {top_names[1]}: {hist_list_round[1]}")
+    ax[0,1].title.set_text(f"{top_names[1]}\nDist. score: {hist_list_round[1]}")
     # second most similar image in row 2, column 1
     ax[1,0].imshow(picturelist[2])
     # add title with name and distance score
-    ax[1,0].title.set_text(f"Dist. for {top_names[2]}: {hist_list_round[2]}")
+    ax[1,0].title.set_text(f"{top_names[2]}\nDist. score: {hist_list_round[2]}")
     # third most similar image in row 2, column 2
     ax[1,1].imshow(picturelist[3])
     # add title with name and distance score
-    ax[1,1].title.set_text(f"Dist. for {top_names[3]}: {hist_list_round[3]}")
+    ax[1,1].title.set_text(f"{top_names[3]}\nDist. score: {hist_list_round[3]}")
     # add distance between subplots
     fig.tight_layout(pad=0.5)
     # save figure
-    fig.savefig("out/hist_similar_images.png")
+    fig.savefig(os.path.join("out", f"hist_similar_images_indx{index}.png"))
     
     # Save results as CSV
     # create a dataframe with the image names and transpose to make each image a column
@@ -154,10 +169,11 @@ def hist_comp():
     output_transp = output_df.transpose()
     
     # save the CSV
-    output_transp.to_csv(os.path.join("out", "hist_similar_images.csv"), encoding = "utf-8")
+    output_transp.to_csv(os.path.join("out", f"hist_similar_images_indx{index}.csv"), encoding = "utf-8")
 
 def main():
-    hist_comp()
+    args = parse_args()
+    hist_comp(int(args["image_index"]))
    
     
 if __name__=="__main__":
