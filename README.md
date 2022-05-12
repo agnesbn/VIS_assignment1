@@ -20,6 +20,8 @@ For this assignment, you will write a small Python program to compare image hist
 
 
 ## 4. Usage
+Put the flower-data into the `in` folder.
+
 Before running the script, run the following in the Terminal:
 ```
 pip install --upgrade pip
