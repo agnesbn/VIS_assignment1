@@ -37,4 +37,5 @@ python src/image_search_hist.py --image_index {INDEX}
 When I ran the code, I put in `231` as my target image index. The results can be seen in the `out` folder. The output files are:
 - `hist_similar_images_indx231.csv`: A CSV with a row for the name of the target image, 
 - `hist_similar_images_indx231.png`: An image of the target image and its three most similar images with their respective distance scores.
-As you can tell, the method is relatively sucessful. I did find, however, that it did not work as well with all images, as it did for image_0232. If you put in `600`, for example, it seems as though none of the flowers on the three most similar images are the same as the one on the target image. And what's more, they are not even the same flowers between them. It higlights the weakness of this type of method. The fact that it only focusses on colour ...
+
+As you can tell if you look at the output, the method was relatively sucessful in my case. I did find, however, that it did not work as well with all images, as it did for image_0232. If you put in `600`, for example, it seems as though none of the flowers on the three most similar images are the same as the one on the target image. And what's more, they are not even the same flowers between them. It higlights the weakness of this type of method. The fact that it only focusses on colour ...
