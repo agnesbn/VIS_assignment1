@@ -61,4 +61,9 @@ When I ran the code, I chose `image_232` as my taget image and thus put in `231`
 
 As you can tell if you look at the output, the method was relatively sucessful in this case. The flowers that were identified as the most similar to the target image do indeed seem to be of the same species as my target flower. I did find, however, that it did not work as well with all images, as it did for `image_0232`. If you put in `600`, for example, it seems as though all flowers on the pictures are of different species (a CSV and PNG for `image_0601` is provided in the output folder). It higlights the weakness of this type of method. As it only picks up on colour distributions, it fails to take into consideration other relevant factors like shape, size, number of flowers etc.
 
+<img
+  src="out/hist_similar_images_indx600.png"
+  alt="Alt text"
+  title="Results for image_601 index = [600]">
+
 Thus, for this type of task a more advanced method would be beneficiary, e.g. using a pretrained model, like VGG16, to do feature extraction for all images and then using a nearest neighbour algorithm to find the images with less "distance" (like we did in Session 11).
