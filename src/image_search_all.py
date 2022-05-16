@@ -151,8 +151,6 @@ def hist_comp(index):
     fig.savefig(os.path.join("out", "all", f"hist_similar_images_indx{index}.png"))
     # close current figure to save memory
     plt.close()
-    # print message
-    print(f"DONE: {image_name}")
     
     # Save results as CSV
     # create a dataframe with the image names and transpose to make each image a column
@@ -165,6 +163,7 @@ def hist_comp(index):
 def main():
     for i in range(0, 1359):
         hist_comp(i)
+        print(f"{i}/1359 complete")
     print("end of loop")
    
     
