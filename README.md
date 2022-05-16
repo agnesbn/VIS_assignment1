@@ -8,13 +8,13 @@ The initial assignment was made partly in collaboration with others from the cou
 ## 2. Assignment description
 When we were first assigned the assignment, the assignment description was as follows:
 
-For this assignment, you will write a small Python program to compare image histograms quantitively using Open-CV and the other image processing tools you've already encountered. Your script should do the following:
+    For this assignment, you will write a small Python program to compare image histograms quantitively using Open-CV and the other image processing tools you've already encountered. Your script should do the following:
 
-- Take a user-defined image from the folder
-- Calculate the "distance" between the colour histogram of that image and all of the others.
-- Find which 3 image are most "similar" to the target image.
-- Save an image which shows the target image, the three most similar, and the calculated distance score.
-- Save a CSV which has one column for the filename and three columns showing the filenames of the closest images in descending order.
+    - Take a user-defined image from the folder
+    - Calculate the "distance" between the colour histogram of that image and all of the others.
+    - Find which 3 image are most "similar" to the target image.
+    - Save an image which shows the target image, the three most similar, and the calculated distance score.
+    - Save a CSV which has one column for the filename and three columns showing the filenames of the closest images in descending order.
 
 ## 3. Methods
 The assignment was to identify the three most similar images to a given target image based on colour histogram comparisons. After some initial data wrangling (i.e. getting lists of all file names and paths in the directory, excluding non-image files, and specifying a target image), a normalised colour histogram is created for the target image and is then compared to colour histograms for all the other images in the directory. This is done by looping over the files in the directory that are not the target image, creating normalised colour histograms for each, comparing the histograms to that of the target image, and saving a list with the results. Then the three images with the lowest distance scores (i.e. with the most similar histograms compared to that of the target image) are identified and used to create the output CSV and PNG.
