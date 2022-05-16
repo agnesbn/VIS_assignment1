@@ -36,10 +36,10 @@ python src/image_search_hist.py --image_index {INDEX}
 `{INDEX}` represents a user-defined argument. Here, you can write any number from 0–1359 and it will index your target image.
 
 ## 5. Discussion of results
-When I ran the code, I put in `231` as my target image index. The results can be seen in the `out` folder. The output files are:
+When I ran the code, I chose `image_232` as my taget image and thus put in `231` as my target image index. The results can be seen in the `out` folder. The output files are:
 - `hist_similar_images_indx231.csv`: A CSV with a row for the name of the target image and then three rows for the top three most similar images to the target image.
 - `hist_similar_images_indx231.png`: An image of the target image and its three most similar images with their respective distance scores.
 
-As you can tell if you look at the output, the method was relatively sucessful in my case. The flowers that were identified as the most similar to my target image do indeed seem to be of the same species as my target flower. I did find, however, that it did not work as well with all images, as it did for `image_0232`. If you put in `600`, for example, it seems as though all flowers on the pictures are of different species (a CSV and PNG for `image_0601` is provided in the output folder). It higlights the weakness of this type of method. As it only pick up on colous distributions, it fails to take into consideration other relevant factors like shape.
+As you can tell if you look at the output, the method was relatively sucessful in this case. The flowers that were identified as the most similar to the target image do indeed seem to be of the same species as my target flower. I did find, however, that it did not work as well with all images, as it did for `image_0232`. If you put in `600`, for example, it seems as though all flowers on the pictures are of different species (a CSV and PNG for `image_0601` is provided in the output folder). It higlights the weakness of this type of method. As it only picks up on colour distributions, it fails to take into consideration other relevant factors like shape, size, number of flowers etc.
 
-Thus, for this type of task a more advanced method would be beneficiary, e.g. using a pretrained model, like VGG16, to do feature extraction for all images and then using a nearest neighbour algorithm to find the images with less "distance", like what we did in Session 11.
+Thus, for this type of task a more advanced method would be beneficiary, e.g. using a pretrained model, like VGG16, to do feature extraction for all images and then using a nearest neighbour algorithm to find the images with less "distance" (like  we did in Session 11).
