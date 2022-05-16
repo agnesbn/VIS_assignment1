@@ -50,6 +50,7 @@ python src/image_search_hist.py --image_index {INDEX}
 ```
 
 - `{INDEX}` represents a user-defined argument. Here, you can write any number from __0–1359__ and it will index your target image.
+- The results are saved in `out/user-defined`
 
 ### Bonus task: Image search with all images
 - Make sure you change the directory back to the `VIS_assignment1` folder.
@@ -57,6 +58,8 @@ python src/image_search_hist.py --image_index {INDEX}
 ```
 python src/image_search_all.py
 ```
+- This takes a while to run (especially with a smaller machine).
+- The results are saved in `out/all`
 
 ## 5. Discussion of results
 When I ran the code, I chose `image_232` as my taget image and thus put in `231` as my target image index. The results can be seen in the `out` folder. The output files are:
