@@ -6,20 +6,24 @@ The portfolio for __Visual Analytics S22__ consists of 4 projects (3 class assig
 The initial assignment was made partly in collaboration with others from the course, but the final code is my own. I made several adjustments to the code since I first handed it in.
 
 ## 2. Assignment description
-When we were first assigned the assignment, the assignment description was as follows:
+### Main assignment
+For this assignment, you will write a small Python program to compare image histograms quantitively using Open-CV and the other image processing tools you've already encountered. Your script should do the following:
 
-    For this assignment, you will write a small Python program to compare image histograms quantitively using Open-CV and the other image processing tools you've already encountered. Your script should do the following:
+- Take a user-defined image from the folder
+- Calculate the "distance" between the colour histogram of that image and all of the others.
+- Find which 3 image are most "similar" to the target image.
+- Save an image which shows the target image, the three most similar, and the calculated distance score.
+- Save a CSV which has one column for the filename and three columns showing the filenames of the closest images in descending order.
 
-    - Take a user-defined image from the folder
-    - Calculate the "distance" between the colour histogram of that image and all of the others.
-    - Find which 3 image are most "similar" to the target image.
-    - Save an image which shows the target image, the three most similar, and the calculated distance score.
-    - Save a CSV which has one column for the filename and three columns showing the filenames of the closest images in descending order.
+### Bonus task
+Create a program which does this for the whole dataset, creating a CSV with one column showing the file name for each image and three other columns showing the most similar images
 
 ## 3. Methods
 The assignment was to identify the three most similar images to a given target image based on colour histogram comparisons. After some initial data wrangling (i.e. getting lists of all file names and paths in the directory, excluding non-image files, and specifying a target image), a normalised colour histogram is created for the target image and is then compared to colour histograms for all the other images in the directory. This is done by looping over the files in the directory that are not the target image, creating normalised colour histograms for each, comparing the histograms to that of the target image, and saving a list with the results. Then the three images with the lowest distance scores (i.e. with the most similar histograms compared to that of the target image) are identified and used to create the output CSV and PNG.
 
 An argument parser was added to the code to make it possible for potential users to specify the target image themselves.
+
+Furthermore, I decided to use the code, I wrote for the main task to also do the bonus task. I simply created a for loop in which the histogram comparisons are for each image with indeces in the range 0–1359.
 
 ## 4. Usage
 ### Install packages
@@ -38,15 +42,21 @@ sudo apt-get -y install graphviz
     - in `{PATH TO IN-FOLDER}` put in the path from where you are to the `in` folder, e.g. `cd CDS-VIS/VIS_assignment1/in`.
 - Open the `.tar`-file by running ```tar -xvf 17flowers.tar```. This should "unzip" the `.tar`-file into a folder called `jpg`.
 
-### Run the script
+### Image search with user-defined image
 - Make sure you change the directory back to the `VIS_assignment1` folder.
 - Then, from the `VIS_assignment1` directory, run:
 ```
 python src/image_search_hist.py --image_index {INDEX}
 ```
 
+- `{INDEX}` represents a user-defined argument. Here, you can write any number from __0–1359__ and it will index your target image.
 
-`{INDEX}` represents a user-defined argument. Here, you can write any number from __0–1359__ and it will index your target image.
+### Image search with all images
+- Make sure you change the directory back to the `VIS_assignment1` folder.
+- Then, from the `VIS_assignment1` directory, run:
+```
+python src/image_search_all.py
+```
 
 ## 5. Discussion of results
 When I ran the code, I chose `image_232` as my taget image and thus put in `231` as my target image index. The results can be seen in the `out` folder. The output files are:
