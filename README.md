@@ -24,6 +24,8 @@ An argument parser was added to the code to make it possible for potential users
 ## 4. Usage
 Put the flower images into the `in` folder.
 
+The data can be downloaded on https://www.robots.ox.ac.uk/~vgg/data/flowers/102/ by clicking on *1. Dataset images* under *Downloads*.
+
 Before running the script, run the following in the Terminal:
 ```
 pip install --upgrade pip
