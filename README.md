@@ -25,7 +25,7 @@ Put the flower-data into the `in` folder.
 Before running the script, run the following in the Terminal:
 ```
 pip install --upgrade pip
-pip install opencv-python scikit-learn tensorflow tensorboard tensorflow-hub pydot scikeras[tensorflow-cpu]
+pip install opencv-python
 sudo apt-get update
 sudo apt-get -y install graphviz
 ```
