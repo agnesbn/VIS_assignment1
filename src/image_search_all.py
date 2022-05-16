@@ -164,7 +164,7 @@ def main():
     for i in range(0, 1359):
         hist_comp(i)
         print(f"{i}/1359 complete")
-    print("end of loop")
+    return print("end of loop")
    
     
 if __name__=="__main__":
