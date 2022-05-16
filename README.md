@@ -6,7 +6,7 @@ The portfolio for __Visual Analytics S22__ consists of 4 projects (3 class assig
 The initial assignment was made partly in collaboration with others from the course, but the final code is my own. I made several adjustments to the code since I first handed it in.
 
 ## 2. Assignment description
-### Main assignment
+### Main task
 For this assignment, you will write a small Python program to compare image histograms quantitively using Open-CV and the other image processing tools you've already encountered. Your script should do the following:
 
 - Take a user-defined image from the folder
@@ -42,7 +42,7 @@ sudo apt-get -y install graphviz
     - in `{PATH TO IN-FOLDER}` put in the path from where you are to the `in` folder, e.g. `cd CDS-VIS/VIS_assignment1/in`.
 - Open the `.tar`-file by running ```tar -xvf 17flowers.tar```. This should "unzip" the `.tar`-file into a folder called `jpg`.
 
-### Image search with user-defined image
+### Main task: Image search with user-defined image
 - Make sure you change the directory back to the `VIS_assignment1` folder.
 - Then, from the `VIS_assignment1` directory, run:
 ```
@@ -51,7 +51,7 @@ python src/image_search_hist.py --image_index {INDEX}
 
 - `{INDEX}` represents a user-defined argument. Here, you can write any number from __0–1359__ and it will index your target image.
 
-### Image search with all images
+### Bonus task: Image search with all images
 - Make sure you change the directory back to the `VIS_assignment1` folder.
 - Then, from the `VIS_assignment1` directory, run:
 ```
