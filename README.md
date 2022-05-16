@@ -64,6 +64,7 @@ As you can tell if you look at the output, the method was relatively sucessful i
 <img
   src="out/hist_similar_images_indx600.png"
   alt="Alt text"
-  title="Results for image_601 index = [600]">
+  title="Results for image_601 index = [600]"
+  style="display: inline-block; margin: 0 auto; max-width: 300px">
 
 Thus, for this type of task a more advanced method would be beneficiary, e.g. using a pretrained model, like VGG16, to do feature extraction for all images and then using a nearest neighbour algorithm to find the images with less "distance" (like we did in Session 11).
