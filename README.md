@@ -53,6 +53,7 @@ When I ran the code, I chose `image_232` as my taget image and thus put in `231`
 - `hist_similar_images_indx231.csv`: A CSV with a row for the name of the target image and then three rows for the top three most similar images to the target image.
 - `hist_similar_images_indx231.png`: An image of the target image and its three most similar images with their respective distance scores.
 
+![Alt text](out/hist_similar_images_indx231.png "Results for image_232 index = [231]")
 <img
   src="out/hist_similar_images_indx231.png"
   alt="Alt text"
