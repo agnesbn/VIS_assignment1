@@ -22,22 +22,29 @@ The assignment was to identify the three most similar images to a given target i
 An argument parser was added to the code to make it possible for potential users to specify the target image themselves.
 
 ## 4. Usage
-Put the flower images into the `in` folder.
-
-The data can be downloaded on https://www.robots.ox.ac.uk/~vgg/data/flowers/17/index.html by clicking on *1. Dataset images* under *Downloads*
-
-Before running the script, run the following in the Terminal:
+### Install packages
+Before running the script, you have to install the relevant packages. To do this, run the following in the Terminal:
 ```
 pip install --upgrade pip
 pip install opencv-python
 sudo apt-get update
 sudo apt-get -y install graphviz
 ```
-Then, from the `VIS_assignment1` directory, run:
+
+### Get the data
+- Download the dataset from https://www.robots.ox.ac.uk/~vgg/data/flowers/17/index.html by clicking on *1. Dataset images* under *Downloads*.
+- Place the `.tar`-file in the `in` folder.
+- From the Terminal, change the current directory to the `in` folder by running `cd {PATH TO IN-FOLDER}` 
+-- in `{PATH TO IN-FOLDER}` put in the path from where you are to the `in` folder, e.g. `cd CDS-VIS/VIS_assignment1/in`.
+- Open the `.tar`-file by running ```tar -xvf 17flowers.tar```. This should "unzip" the `.tar`-file into a folder called `jpg`.
+
+### Run the script
+- Make sure you change the directory back to the `VIS_assignment1` folder.
+- Then, from the `VIS_assignment1` directory, run:
 ```
 python src/image_search_hist.py --image_index {INDEX}
 ```
-`{INDEX}` represents a user-defined argument. Here, you can write any number from 0–1359 and it will index your target image.
+-- `{INDEX}` represents a user-defined argument. Here, you can write any number from 0–1359 and it will index your target image.
 
 ## 5. Discussion of results
 When I ran the code, I chose `image_232` as my taget image and thus put in `231` as my target image index. The results can be seen in the `out` folder. The output files are:
