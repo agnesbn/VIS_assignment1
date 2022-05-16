@@ -35,7 +35,7 @@ sudo apt-get -y install graphviz
 - Download the dataset from https://www.robots.ox.ac.uk/~vgg/data/flowers/17/index.html by clicking on *1. Dataset images* under *Downloads*.
 - Place the `.tar`-file in the `in` folder.
 - From the Terminal, change the current directory to the `in` folder by running `cd {PATH TO IN-FOLDER}` 
--- in `{PATH TO IN-FOLDER}` put in the path from where you are to the `in` folder, e.g. `cd CDS-VIS/VIS_assignment1/in`.
+    - in `{PATH TO IN-FOLDER}` put in the path from where you are to the `in` folder, e.g. `cd CDS-VIS/VIS_assignment1/in`.
 - Open the `.tar`-file by running ```tar -xvf 17flowers.tar```. This should "unzip" the `.tar`-file into a folder called `jpg`.
 
 ### Run the script
@@ -44,7 +44,7 @@ sudo apt-get -y install graphviz
 ```
 python src/image_search_hist.py --image_index {INDEX}
 ```
--- `{INDEX}` represents a user-defined argument. Here, you can write any number from 0–1359 and it will index your target image.
+    - `{INDEX}` represents a user-defined argument. Here, you can write any number from 0–1359 and it will index your target image.
 
 ## 5. Discussion of results
 When I ran the code, I chose `image_232` as my taget image and thus put in `231` as my target image index. The results can be seen in the `out` folder. The output files are:
