@@ -1,1 +1,9 @@
-opencv
+Packages used in the script:
+- cv2
+- os
+- sys
+- itemgetter (from operator)
+- re
+- numpy
+- pandas
+- matplotlib.pyplot
