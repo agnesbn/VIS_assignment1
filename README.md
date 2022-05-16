@@ -17,10 +17,12 @@ For this assignment, you will write a small Python program to compare image hist
 - Save a CSV which has one column for the filename and three columns showing the filenames of the closest images in descending order.
 
 ## 3. Methods
+The assignment was to identify the three most similar images to a given target image based on colour histogram comparisons. After some initial data wrangling (i.e. getting lists of all file names and paths in the directory, excluding non-image files, and specifying a target image), a normalised colour histogram is created for the target image and is then compared to colour histograms for all the other images in the directory. This is done by looping over the files in the directory that are not the target image, creating normalised colour histograms for each, comparing the histograms to that of the target image, and saving a list with the results. Then the three images with the lowest distance scores (i.e. with the most similar histograms compared to that of the target image) are identified and used to create the output CSV and PNG.
 
+An argument parser was added to the code to make it possible for potential users to specify the target image themselves.
 
 ## 4. Usage
-Put the flower-data into the `in` folder.
+Put the flower images into the `in` folder.
 
 Before running the script, run the following in the Terminal:
 ```
