@@ -17,18 +17,6 @@ import cv2
  # plotting
 import matplotlib.pyplot as plt
 
-""" Argument parser """
-# Argument parser
-def parse_args():
-    ap = argparse.ArgumentParser()
-    # target image index (between 0 and 1359)
-    ap.add_argument("-i", 
-                    "--image_index", 
-                    required = True, 
-                    help = "The index of your target image, choose number between 0 and 1359")
-    args = vars(ap.parse_args())
-    return args 
-
 """ Histogram comparison function """
 def hist_comp(index):
     # get directory path
@@ -160,7 +148,11 @@ def hist_comp(index):
     # add distance between subplots
     fig.tight_layout(pad=0.5)
     # save figure
-    fig.savefig(os.path.join("out", "user-defined", f"hist_similar_images_indx{index}.png"))
+    fig.savefig(os.path.join("out", "all", f"hist_similar_images_indx{index}.png"))
+    # close current figure to save memory
+    plt.close()
+    # print message
+    print(f"DONE: {image_name}")
     
     # Save results as CSV
     # create a dataframe with the image names and transpose to make each image a column
@@ -168,11 +160,12 @@ def hist_comp(index):
     output_transp = output_df.transpose()
     
     # save the CSV
-    output_transp.to_csv(os.path.join("out", "user-defined", f"hist_similar_images_indx{index}.csv"), encoding = "utf-8")
+    output_transp.to_csv(os.path.join("out", "all", f"hist_similar_images_indx{index}.csv"), encoding = "utf-8")
 
 def main():
-    args = parse_args()
-    hist_comp(int(args["image_index"]))
+    for i in range(0, 1359):
+        hist_comp(i)
+    print("end of loop")
    
     
 if __name__=="__main__":
