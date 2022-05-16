@@ -33,7 +33,7 @@ def parse_args():
 """ Histogram comparison function """
 def hist_comp(index):
     # get directory path
-    directory_path = os.path.join("in")
+    directory_path = os.path.join("in", "jpg")
     # filenames
     filenames = os.listdir(directory_path)
     # joined paths to images in the directory
