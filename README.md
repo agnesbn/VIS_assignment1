@@ -46,7 +46,7 @@ python src/image_search_hist.py --image_index {INDEX}
 ```
 
 
-`{INDEX}` represents a user-defined argument. Here, you can write any number from 0–1359 and it will index your target image.
+`{INDEX}` represents a user-defined argument. Here, you can write any number from __0–1359__ and it will index your target image.
 
 ## 5. Discussion of results
 When I ran the code, I chose `image_232` as my taget image and thus put in `231` as my target image index. The results can be seen in the `out` folder. The output files are:
