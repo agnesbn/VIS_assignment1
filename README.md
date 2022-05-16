@@ -44,6 +44,7 @@ sudo apt-get -y install graphviz
 ```
 python src/image_search_hist.py --image_index {INDEX}
 ```
+
     - `{INDEX}` represents a user-defined argument. Here, you can write any number from 0–1359 and it will index your target image.
 
 ## 5. Discussion of results
