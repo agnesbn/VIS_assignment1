@@ -24,8 +24,9 @@ def parse_args():
     # target image index (between 0 and 1359)
     ap.add_argument("-i", 
                     "--image_index", 
-                    required = True, 
-                    help = "The index of your target image, choose number between 0 and 1359")
+                    required=True,
+                    type=int,
+                    help="The index of your target image, choose number between 0 and 1359")
     args = vars(ap.parse_args())
     return args 
 
@@ -160,7 +161,7 @@ def hist_comp(index):
     # add distance between subplots
     fig.tight_layout(pad=0.5)
     # save figure
-    fig.savefig(os.path.join("out", "user-defined", f"hist_similar_images_indx{index}.png"))
+    fig.savefig(os.path.join("out", "user-defined", f"img{(index+1):04}_similar_images.png"))
     
     # Save results as CSV
     # create a dataframe with the image names and transpose to make each image a column
@@ -168,11 +169,11 @@ def hist_comp(index):
     output_transp = output_df.transpose()
     
     # save the CSV
-    output_transp.to_csv(os.path.join("out", "user-defined", f"hist_similar_images_indx{index}.csv"), encoding = "utf-8")
+    output_transp.to_csv(os.path.join("out", "user-defined", f"img{(index+1):04}_similar_images.csv"), encoding = "utf-8")
 
 def main():
     args = parse_args()
-    hist_comp(int(args["image_index"]))
+    hist_comp(args["image_index"])
    
     
 if __name__=="__main__":

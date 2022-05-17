@@ -148,7 +148,7 @@ def hist_comp(index):
     # add distance between subplots
     fig.tight_layout(pad=0.5)
     # save figure
-    fig.savefig(os.path.join("out", "all", f"hist_similar_images_indx{index}.png"))
+    fig.savefig(os.path.join("out", "all", f"img{(index+1):04}_similar_images.png"))
     # close current figure to save memory
     plt.close()
     
@@ -158,13 +158,13 @@ def hist_comp(index):
     output_transp = output_df.transpose()
     
     # save the CSV
-    output_transp.to_csv(os.path.join("out", "all", f"hist_similar_images_indx{index}.csv"), encoding = "utf-8")
+    output_transp.to_csv(os.path.join("out", "all", f"img{(index+1):04}_similar_images.csv"), encoding = "utf-8")
 
 def main():
     for i in range(0, 1359):
         hist_comp(i)
-        print(f"{i}/1359 complete")
-    return print("end of loop")
+        print(f"[INFO] {i+1}/1360 complete")
+    return print("[INFO] COMPLETE")
    
     
 if __name__=="__main__":
