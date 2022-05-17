@@ -67,11 +67,11 @@ When I ran the main code, I chose `image_232` as my taget image and thus put in 
 - `hist_similar_images_indx231.png`: An image of the target image and its three most similar images with their respective distance scores.
 
 ### Target image_232 and its three most similar images
-![Image_232](out/user-defined/hist_similar_images_indx231.png "Results for image_232 index=231")
+![Image_232](out/user-defined/img0232_similar_images.png "Results for image_232 index=231")
 
 As you can tell from the image, the method was relatively sucessful in the case of `image_232`. The flowers that were identified as the most similar to the target image do indeed seem to be of the same species as my target flower. I did find, however, that it did not work as well with all images, as it did for `image_0232`. For `image_601`, for example, it seems as though all flowers on the PNG are of different species.
 
 ### Target image_601 and its three most similar images
-![Image_601](out/user-defined/hist_similar_images_indx600.png "Results for image_601 index=600")
+![Image_601](out/user-defined/img0601_similar_images.png "Results for image_601 index=600")
 
 This higlights the weakness of this type of method. As it only picks up on colour distributions, it fails to take into consideration other relevant factors like shape, size, number and distribution of flowers etc. Thus, for this type of task a more advanced method would be beneficiary, e.g. using a pretrained model, like VGG16, to do feature extraction for all images and then using a nearest neighbour algorithm to find the images with less "distance" (like we did in Session 11).
