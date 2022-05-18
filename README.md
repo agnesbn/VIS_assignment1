@@ -46,7 +46,7 @@ tar -xvf 17flowers.tar
 ```
 
 
-This should "unzip" the `.tar`-file into a folder called `jpg`
+This should "unzip" the `.tar`-file into a folder called `jpg` so that the path to the input folder is `VIS_assignment1/in/jpg`.
 
 ### Main task: Image search with user-defined image
 See code [here](https://github.com/agnesbn/VIS_assignment1/blob/main/src/image_search_hist.py).
