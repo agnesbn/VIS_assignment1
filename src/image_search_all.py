@@ -151,21 +151,25 @@ def hist_comp(index):
     fig.savefig(os.path.join("out", "all", f"img{(index+1):04}_similar_images.png"))
     # close current figure to save memory
     plt.close()
-    
+    return top_names
+
+def save_csv(top_names):
     # Save results as CSV
     # create a dataframe with the image names and transpose to make each image a column
-    output_df = pd.DataFrame(top_names, ["Target image", "Most similar", "Second most similar", "Third most similar"])
-    output_transp = output_df.transpose()
-    
+    output_df = pd.DataFrame(top_names,columns=["Target image", "Most similar", "Second most similar", "Third most similar"])
+
     # save the CSV
-    output_transp.to_csv(os.path.join("out", "all", f"img{(index+1):04}_similar_images.csv"), encoding = "utf-8")
+    output_df.to_csv(os.path.join("out", "all", f"img_similar_images.csv"), 
+                     encoding = "utf-8",
+                     index=False)
 
 def main():
+    top_names = []
     for i in range(0, 1359):
-        hist_comp(i)
+        top_names.append(tuple(hist_comp(i)))
         print(f"[INFO] {i+1}/1360 complete")
+    save_csv(top_names)
     return print("[INFO] COMPLETE")
-   
     
 if __name__=="__main__":
     main()
