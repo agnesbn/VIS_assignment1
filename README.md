@@ -29,7 +29,7 @@ The script for the bonus task, [image_search_hist.py](https://github.com/agnesbn
 
 ## 4. Usage
 ### Install packages
-Before running the script, you have to install the relevant packages. To do this, run the following in the Terminal:
+Before running the script, you have to install the relevant packages. To do this, run the following from the command line:
 ```
 pip install --upgrade pip
 pip install opencv-python
@@ -40,7 +40,7 @@ sudo apt-get -y install graphviz
 ### Get the data
 - Download the dataset from https://www.robots.ox.ac.uk/~vgg/data/flowers/17/index.html by clicking on *1. Dataset images* under *Downloads*.
 - Place the `.tar`-file in the [`in`](https://github.com/agnesbn/VIS_assignment1/tree/main/in) folder.
-- From the Terminal, change the current directory to the `in` folder and open the `.tar`-file by running:
+- From the command line, change the current directory to the `in` folder and open the `.tar`-file by running:
 
 ```
 tar -xvf 17flowers.tar
