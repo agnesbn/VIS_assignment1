@@ -20,11 +20,12 @@ For this assignment, you will write a small Python program to compare image hist
 Create a program which does this for the whole dataset, creating a CSV with one column showing the file name for each image and three other columns showing the most similar images.
 
 ## 3. Methods
-The assignment was to identify the three most similar images to a given target image based on colour histogram comparisons. After some initial data wrangling (i.e. getting lists of all file names and paths in the directory, excluding non-image files, and specifying a target image), a normalised colour histogram is created for the target image and is then compared to colour histograms for all the other images in the directory. This is done by looping over the files in the directory that are not the target image, creating normalised colour histograms for each, comparing the histograms to that of the target image, and saving a list with the results. Then the three images with the lowest distance scores (i.e. with the most similar histograms compared to that of the target image) are identified and used to create the output CSV and PNG.
+### Main task
+The main script,[image_search_hist.py](https://github.com/agnesbn/VIS_assignment1/blob/main/src/image_search_hist.py), identifies the three most similar images to a user-defined target image based on colour histogram comparisons. After some initial data wrangling (i.e. getting lists of all file names and paths in the directory, excluding non-image files, and specifying a target image), a normalised colour histogram is created for the target image and is then compared to colour histograms for all the other images in the directory. This is done by looping over the files in the directory that are not the target image, creating normalised colour histograms for each, comparing the histograms to that of the target image, and saving a list with the results. Then the three images with the lowest distance scores (i.e. with the most similar histograms compared to that of the target image) are identified and used to create the output CSV and PNG.
 
-An argument parser was added to the code to make it possible for potential users to specify the target image themselves.
+### Bonus task
+The script for the bonus task, [image_search_hist.py](https://github.com/agnesbn/VIS_assignment1/blob/main/src/image_search_hist.py), uses many of the same methods as the main script. It creates a list of histograms for all images, comapares them, finds the three most similar images to each image, and creates and saves plots for all and one big CSV with information about all images.
 
-Furthermore, I decided to use the code, I wrote for the main task to also do the bonus task. I simply created a for loop in which the histogram comparisons are for each image with indeces in the range 0–1359.
 
 ## 4. Usage
 ### Install packages
