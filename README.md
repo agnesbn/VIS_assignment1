@@ -39,7 +39,7 @@ sudo apt-get -y install graphviz
 
 ### Get the data
 - Download the dataset from https://www.robots.ox.ac.uk/~vgg/data/flowers/17/index.html by clicking on *1. Dataset images* under *Downloads*.
-- Place the `.tar`-file in the `in` folder.
+- Place the `.tar`-file in the [`in`](https://github.com/agnesbn/VIS_assignment1/tree/main/in) folder.
 - From the Terminal, change the current directory to the `in` folder and open the `.tar`-file by running:
 
 ```
