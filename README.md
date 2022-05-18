@@ -80,3 +80,6 @@ As you can tell from the image, the method was relatively sucessful in the case 
 ![Image_601](out/user-defined/img0601_similar_images.png "Results for image_601 index=600")
 
 This higlights the weakness of this type of method. As it only picks up on colour distributions, it fails to take into consideration other relevant factors like shape, size, number and distribution of flowers etc. Thus, for this type of task a more advanced method would be beneficiary, e.g. using a pretrained model, like VGG16, to do feature extraction for all images and then using a nearest neighbour algorithm to find the images with less "distance" (like we did in Session 11).
+
+### Bonus task
+Obviously, my solution is very cruddy and takes unnecessarily long time to run, because it makes histograms for all images every time a new target images is called. With more time, I would have written it so histograms were first created for all images and then they were compared between themselves.
