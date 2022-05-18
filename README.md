@@ -50,7 +50,6 @@ tar -xvf 17flowers.tar
 This should "unzip" the `.tar`-file into a folder called `jpg` so that the path to the input folder is `VIS_assignment1/in/jpg`.
 
 ### Main task: Image search with user-defined image
-See code [here](https://github.com/agnesbn/VIS_assignment1/blob/main/src/image_search_hist.py).
 - Make sure your current directory is the `VIS_assignment1` folder.
 - Then, from the `VIS_assignment1` directory, run:
 ```
@@ -61,7 +60,6 @@ python src/image_search_hist.py --image_index <INDEX>
 - The results are saved in [`out/user-defined`](https://github.com/agnesbn/VIS_assignment1/tree/main/out/user-defined).
 
 ### Bonus task: Image search with all images
-See code [here](https://github.com/agnesbn/VIS_assignment1/blob/main/src/image_search_all.py).
 - Make sure your current directory is the `VIS_assignment1` folder.
 - Then, from the `VIS_assignment1` directory, run:
 ```
