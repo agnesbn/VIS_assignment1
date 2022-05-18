@@ -38,33 +38,29 @@ sudo apt-get -y install graphviz
 ### Get the data
 - Download the dataset from https://www.robots.ox.ac.uk/~vgg/data/flowers/17/index.html by clicking on *1. Dataset images* under *Downloads*.
 - Place the `.tar`-file in the `in` folder.
-- From the Terminal, change the current directory to the `in` folder by running 
+- From the Terminal, change the current directory to the `in` folder and open the `.tar`-file by running (this should "unzip" the `.tar`-file into a folder called `jpg`):
 
+```tar -xvf 17flowers.tar```
 
-```cd <PATH TO IN-FOLDER>```
-
-
-    - in `<PATH TO IN-FOLDER>` put in the path from where you are to the `in` folder, e.g. `cd CDS-VIS/VIS_assignment1/in`.
-- Open the `.tar`-file by running ```tar -xvf 17flowers.tar```. This should "unzip" the `.tar`-file into a folder called `jpg`.
 
 ### Main task: Image search with user-defined image
-- Make sure you change the directory back to the `VIS_assignment1` folder.
+- Make sure your current directory is the `VIS_assignment1` folder.
 - Then, from the `VIS_assignment1` directory, run:
 ```
 python src/image_search_hist.py --image_index <INDEX>
 ```
 
 - `<INDEX>` represents a user-defined argument. Here, you can write any number from __0–1359__ and it will index your target image.
-- The results are saved in `out/user-defined`
+- The results are saved in `out/user-defined`.
 
 ### Bonus task: Image search with all images
-- Make sure you change the directory back to the `VIS_assignment1` folder.
+- Make sure your current directory is the `VIS_assignment1` folder.
 - Then, from the `VIS_assignment1` directory, run:
 ```
 python src/image_search_all.py
 ```
-- This takes a while to run (especially with a smaller machine).
-- The plots for the first 10 images and the CSV is saved in `out/all`.
+- The results are saved in `out/all`.
+    - You can see the first 10 plots and and the CSV with all images here [a workaround link](VIS_assignment1/tree/main/out/all)
 
 ## 5. Discussion of results
 When I ran the main code, I chose `image_232` as my taget image and thus put in `231` as my target image index. The output files are:
