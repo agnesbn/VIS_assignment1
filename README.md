@@ -64,7 +64,7 @@ python src/image_search_hist.py --image_index <INDEX>
 python src/image_search_all.py
 ```
 - This takes a while to run (especially with a smaller machine).
-- The results are saved in `out/all`
+- The plots for the first 10 images and the CSV is saved in `out/all`.
 
 ## 5. Discussion of results
 When I ran the main code, I chose `image_232` as my taget image and thus put in `231` as my target image index. The output files are:
