@@ -17,8 +17,45 @@ import cv2
  # plotting
 import matplotlib.pyplot as plt
 
+""" Basic functions """
+# create and save a plot of the four similar images
+def image_plot(picturelist, top_names, hist_list_round, index):
+    # figure with 2 rows and 2 columns
+    fig, ax = plt.subplots(2,2)
+    # target image in row 1, colum 1
+    ax[0,0].imshow(picturelist[0])
+    # add title with name and distance score
+    ax[0,0].title.set_text(f"{top_names[0]}\nTarget image")
+    # most similar image in row 1, column 2
+    ax[0,1].imshow(picturelist[1])
+    # add title with name and distance score
+    ax[0,1].title.set_text(f"{top_names[1]}\nDist. score: {hist_list_round[0]}")
+    # second most similar image in row 2, column 1
+    ax[1,0].imshow(picturelist[2])
+    # add title with name and distance score
+    ax[1,0].title.set_text(f"{top_names[2]}\nDist. score: {hist_list_round[1]}")
+    # third most similar image in row 2, column 2
+    ax[1,1].imshow(picturelist[3])
+    # add title with name and distance score
+    ax[1,1].title.set_text(f"{top_names[3]}\nDist. score: {hist_list_round[2]}")
+    # add distance between subplots
+    fig.tight_layout(pad=0.5)
+    # save figure
+    fig.savefig(os.path.join("out", "all", f"img{(index+1):04}_similar_images.png"))
+    # close current figure to save memory
+    plt.close()
+
+# save all results as csv
+def save_csv(top_names):
+    # create a dataframe with the image names
+    output_df = pd.DataFrame(top_names,columns=["Target image", "Most similar", "Second most similar", "Third most similar"])
+    # save the CSV
+    output_df.to_csv(os.path.join("out", "all", f"img_similar_images.csv"), 
+                     encoding = "utf-8",
+                     index=False)
+
 """ Histogram comparison function """
-def hist_comp(index):
+def hist_comp():
     # get directory path
     directory_path = os.path.join("in", "jpg")
     # filenames
@@ -26,7 +63,7 @@ def hist_comp(index):
     # joined paths to images in the directory
     joined_paths = []
     # image names in the directory
-    image_names = []
+    image_names = [] 
     # for files in list of filenames
     for file in filenames:
         # if a file does not end with .jpg, do nothing
@@ -39,137 +76,79 @@ def hist_comp(index):
             joined_paths.append(input_path)
             # and append filename to another list
             image_names.append(file)
-    
     # sort filenames and filepaths
     joined_names = sorted(image_names)
     joined_paths = sorted(joined_paths)
+    # get list of histograms
+    print("[INFO] Creating histograms ...")
+    hist_list = []
+    for i in range(0,1360):
+        image_path = joined_paths[i]
+        image_name = joined_names[i]
+        image = cv2.imread(image_path)
+        # saving the histogram and normalised histogram for the target image
+        hist = cv2.calcHist([image],
+                            [0,1,2],
+                            None,
+                            [8,8,8],
+                            [0,256, 0,256, 0,256])
+        hist_norm = cv2.normalize(hist, hist,
+                              0,255,
+                                  cv2.NORM_MINMAX)
+        hist_list.append((image_path, image_name, hist_norm))
+    # compare all histograms
+    print("[INFO] Comparing histograms ...")
+    comparisons = []
+    for h in hist_list:
+        path1 = h[0]
+        name1 = h[1]
+        hist1 = h[2]
+        v = []
+        for c in hist_list:
+            if c[1] != name1:
+                path2 = c[0]
+                name2 = c[1]
+                hist2 = c[2]
+                hist_comp = cv2.compareHist(hist2, hist1, cv2.HISTCMP_CHISQR)
+                v.append((path2, name2, hist_comp))
+        # sort the list by distance score
+        compar_sorted = sorted(v, key=itemgetter(2))
+        # get only top three most similar images
+        comparisons.append(((path1, name1),compar_sorted[0:3]))
+    # get relevant values    
+    il = []
+    hl = []
+    tn = []
+    for t in comparisons:
+        # load images
+        im1 = cv2.cvtColor(cv2.imread(t[0][0]), cv2.COLOR_BGR2RGB)
+        im2 = cv2.cvtColor(cv2.imread(t[1][0][0]), cv2.COLOR_BGR2RGB)
+        im3 = cv2.cvtColor(cv2.imread(t[1][1][0]), cv2.COLOR_BGR2RGB)
+        im4 = cv2.cvtColor(cv2.imread(t[1][2][0]), cv2.COLOR_BGR2RGB)
+        # make list of loaded images
+        image_list = [im1, im2, im3, im4]
+        il.append((image_list))
+        # get list of rounded distance scores
+        hist_list = [0, t[1][0][2], t[1][1][2], t[1][2][2]]    
+        hist_list_round = [round(num, 3) for num in hist_list]
+        hl.append((hist_list_round))
+        # make list of names of top images
+        top_names = [t[0][1], t[1][0][1], t[1][1][1], t[1][2][1]]
+        tn.append((top_names))
+    return (il, hl, tn)
     
-    # user-defined image
-    image_path = joined_paths[index]
-    image_name = joined_names[index]
-    
-    # read the image
-    image = cv2.imread(image_path)
-    
-    # print image name and path
-    print(f"Image name: {image_name},\nImage path: {image_path}")
-    
-    # Calculate distance scores between the target image and all other images
-    # save the histogram for target image
-    hist1 = cv2.calcHist([image],
-                         [0,1,2], # use all channels
-                         None, # no masks
-                         [8,8,8], # each channel uses a bin of 8
-                         [0,256, 0,256, 0,256]) # ranges of values possible for each channel
-    hist1_norm = cv2.normalize(hist1, hist1, # normalising hist1 relative to itself
-                               0,255, # ranges (note! different indexing)
-                               cv2.NORM_MINMAX)
-    
-    # list of paths to all other images than the target
-    comp_list = []
-    for path in joined_paths:
-        if not path == image_path:
-            comp_list.append(path)
-    
-    # comparison list with the filepaths, file names, and distance scores for all images
-    hist_comparison = []
-    
-    for path in comp_list:
-        comp_path = path
-        # get name
-        comp_name = re.sub('.*\/', '', comp_path)
-        # read image
-        comp_img = cv2.imread(comp_path)
-        # create histogram
-        hist2 = cv2.calcHist([comp_img],
-                             [0,1,2],
-                             None,
-                             [8,8,8],
-                             [0,256, 0,256, 0,256])
-        # normalise histogram
-        hist2_norm = cv2.normalize(hist2, hist2,
-                                   0,255, 
-                                   cv2.NORM_MINMAX)
-        # compare to hist1 (target image)
-        hist_comp = cv2.compareHist(hist2_norm, hist1_norm, cv2.HISTCMP_CHISQR)
-        # append filepaths, file names, and distance scores to list
-        hist_comparison.append((comp_path, comp_name, hist_comp))
-    
-    # sort the comparison list by distance score
-    compar_sorted = sorted(hist_comparison, key=itemgetter(2))
-    
-    # list of the three most similar images
-    top_3 = compar_sorted[0:3]
-    
-    # list of filenames for the target and top three images
-    top_names = [image_name]
-    for tup in top_3:
-        top_names.append((tup[1]))
-    
-    # convert colours from BGR (OpenCV) to RGB (matplotlib)
-    imageRGB = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    im1 = top_3[0][0]
-    im1r = cv2.cvtColor(cv2.imread(im1), cv2.COLOR_BGR2RGB)
-    im2 = top_3[1][0]
-    im2r = cv2.cvtColor(cv2.imread(im2), cv2.COLOR_BGR2RGB)
-    im3 = top_3[2][0]
-    im3r = cv2.cvtColor(cv2.imread(im3), cv2.COLOR_BGR2RGB)
-    
-    # make a list of the images
-    picturelist = [imageRGB, im1r, im2r, im3r]
-    
-    # make a list of the distance scores
-    hist_list = [0]
-    for tup in top_3:
-        hist_list.append(tup[2])
-    
-    # round distance scores for plotting
-    hist_list_round = [round(num, 3) for num in hist_list]
-    
-    # Create and save a plot of the four images
-    # figure with 2 rows and 2 columns
-    fig, ax = plt.subplots(2,2)
-    # target image in row 1, colum 1
-    ax[0,0].imshow(picturelist[0])
-    # add title with name and distance score
-    ax[0,0].title.set_text(f"{top_names[0]}\nTarget image")
-    # most similar image in row 1, column 2
-    ax[0,1].imshow(picturelist[1])
-    # add title with name and distance score
-    ax[0,1].title.set_text(f"{top_names[1]}\nDist. score: {hist_list_round[1]}")
-    # second most similar image in row 2, column 1
-    ax[1,0].imshow(picturelist[2])
-    # add title with name and distance score
-    ax[1,0].title.set_text(f"{top_names[2]}\nDist. score: {hist_list_round[2]}")
-    # third most similar image in row 2, column 2
-    ax[1,1].imshow(picturelist[3])
-    # add title with name and distance score
-    ax[1,1].title.set_text(f"{top_names[3]}\nDist. score: {hist_list_round[3]}")
-    # add distance between subplots
-    fig.tight_layout(pad=0.5)
-    # save figure
-    fig.savefig(os.path.join("out", "all", f"img{(index+1):04}_similar_images.png"))
-    # close current figure to save memory
-    plt.close()
-    return top_names
-
-def save_csv(top_names):
-    # Save results as CSV
-    # create a dataframe with the image names and transpose to make each image a column
-    output_df = pd.DataFrame(top_names,columns=["Target image", "Most similar", "Second most similar", "Third most similar"])
-
-    # save the CSV
-    output_df.to_csv(os.path.join("out", "all", f"img_similar_images.csv"), 
-                     encoding = "utf-8",
-                     index=False)
-
+""" Main function """    
 def main():
-    top_names = []
-    for i in range(0, 1359):
-        top_names.append(tuple(hist_comp(i)))
+    (il, hl, tn) = hist_comp()
+    print("[INFO] Saving histogram plots ...")
+    i = 0
+    for im, h, t in zip(il, hl, tn):
+        image_plot(im, t, h, i)
         print(f"[INFO] {i+1}/1360 complete")
-    save_csv(top_names)
-    return print("[INFO] COMPLETE")
+        i += 1
+    save_csv(tn)
+    return print("[INFO] COMPLETE!")
+
     
 if __name__=="__main__":
     main()
