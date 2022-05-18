@@ -9,14 +9,14 @@ The initial assignment was made partly in collaboration with others from the cou
 ### Main task
 For this assignment, you will write a small Python program to compare image histograms quantitively using Open-CV and the other image processing tools you've already encountered. Your script should do the following:
 
-- Take a user-defined image from the folder
+- Take a user-defined image from the folder.
 - Calculate the "distance" between the colour histogram of that image and all of the others.
 - Find which 3 image are most "similar" to the target image.
 - Save an image which shows the target image, the three most similar, and the calculated distance score.
 - Save a CSV which has one column for the filename and three columns showing the filenames of the closest images in descending order.
 
 ### Bonus task
-Create a program which does this for the whole dataset, creating a CSV with one column showing the file name for each image and three other columns showing the most similar images
+Create a program which does this for the whole dataset, creating a CSV with one column showing the file name for each image and three other columns showing the most similar images.
 
 ## 3. Methods
 The assignment was to identify the three most similar images to a given target image based on colour histogram comparisons. After some initial data wrangling (i.e. getting lists of all file names and paths in the directory, excluding non-image files, and specifying a target image), a normalised colour histogram is created for the target image and is then compared to colour histograms for all the other images in the directory. This is done by looping over the files in the directory that are not the target image, creating normalised colour histograms for each, comparing the histograms to that of the target image, and saving a list with the results. Then the three images with the lowest distance scores (i.e. with the most similar histograms compared to that of the target image) are identified and used to create the output CSV and PNG.
@@ -57,7 +57,7 @@ python src/image_search_hist.py --image_index <INDEX>
 - The results are saved in [`out/user-defined`](https://github.com/agnesbn/VIS_assignment1/tree/main/out/user-defined).
 
 ### Bonus task: Image search with all images
-See code [here](https://github.com/agnesbn/VIS_assignment1/blob/main/src/image_search_all.py)
+See code [here](https://github.com/agnesbn/VIS_assignment1/blob/main/src/image_search_all.py).
 - Make sure your current directory is the `VIS_assignment1` folder.
 - Then, from the `VIS_assignment1` directory, run:
 ```
