@@ -39,12 +39,14 @@ sudo apt-get -y install graphviz
 ### Get the data
 - Download the dataset from https://www.robots.ox.ac.uk/~vgg/data/flowers/17/index.html by clicking on *1. Dataset images* under *Downloads*.
 - Place the `.tar`-file in the `in` folder.
-- From the Terminal, change the current directory to the `in` folder and open the `.tar`-file by running (this should "unzip" the `.tar`-file into a folder called `jpg`):
+- From the Terminal, change the current directory to the `in` folder and open the `.tar`-file by running:
 
 ```
 tar -xvf 17flowers.tar
 ```
 
+
+This should "unzip" the `.tar`-file into a folder called `jpg`
 
 ### Main task: Image search with user-defined image
 See code [here](https://github.com/agnesbn/VIS_assignment1/blob/main/src/image_search_hist.py).
